@@ -2,11 +2,14 @@ import { useState } from "react";
 import axios from "axios";
 import { postData } from "../redux/actions/goals";
 import { connect } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
 function GoalInput(props) {
 	const [goal, setGoal] = useState();
 	const [priority, setPriority] = useState();
 	const [labels, setLabels] = useState();
+
+	const navigate = useNavigate();
 
 	const handleSubmit = (e) => {
 		e.preventDefault();
@@ -17,7 +20,7 @@ function GoalInput(props) {
 			labels,
 		};
 
-		props.postData(body);
+		props.postData(body, navigate);
 	};
 
 	return (

@@ -7,8 +7,16 @@ export const fetchData = () => (dispatch) => {
 	});
 };
 
-export const postData = (body) => (dispatch) => {
+export const fetchSingleData = (id) => (dispatch) => {
+	console.log(id);
+	axios.get(`/api/goals/${id}`).then(({ data }) => {
+		console.log(data);
+	});
+};
+
+export const postData = (body, navigate) => (dispatch) => {
 	axios.post("/api/goals", body).then(({ data }) => {
 		dispatch({ type: POST_DATA, payload: data });
+		navigate(`/${data._id}`);
 	});
 };
