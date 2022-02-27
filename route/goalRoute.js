@@ -32,13 +32,18 @@ router.put("/:id", async (req, res) => {
 	const id = req.params.id;
 
 	const body = req.body;
-	console.log(body);
 
 	const updatedGoal = await Goal.findByIdAndUpdate(id, body, { new: true });
 
-	console.log(updatedGoal);
-
 	return res.status(201).json(updatedGoal);
+});
+
+router.delete("/:id", async (req, res) => {
+	const id = req.params.id;
+
+	const deletedGoal = await Goal.findByIdAndDelete(id);
+
+	return res.status(200).json(deletedGoal);
 });
 
 module.exports = router;
