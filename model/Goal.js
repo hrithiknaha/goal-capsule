@@ -7,7 +7,7 @@ const goalSchema = mongoose.Schema({
 	priority: {
 		type: Number,
 	},
-	label: [String],
+	labels: [String],
 });
 
 module.exports = mongoose.model("Goal", goalSchema);

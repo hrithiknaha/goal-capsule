@@ -9,12 +9,12 @@ router.get("/", async (req, res) => {
 });
 
 router.post("/", async (req, res) => {
-	const { name, priority, label } = req.body;
+	const { name, priority } = req.body;
 
 	const goal = await Goal.create({
 		name,
 		priority,
-		label,
+		labels: req.body.labels.split(","),
 	});
 
 	return res.status(201).json(goal);
