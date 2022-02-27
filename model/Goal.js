@@ -9,3 +9,5 @@ const goalSchema = mongoose.Schema({
 	},
 	label: [String],
 });
+
+module.exports = mongoose.model("Goal", goalSchema);
