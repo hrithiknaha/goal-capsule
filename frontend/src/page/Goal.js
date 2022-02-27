@@ -10,7 +10,26 @@ function Goal(props) {
 	useEffect(() => {
 		props.fetchSingleData(params.id);
 	}, []);
-	return <div>Journal</div>;
+	return (
+		<div>
+			<h1>Journal</h1>
+			{props.isLoading ? (
+				<p>Loading...</p>
+			) : (
+				<div>
+					<h3>{props.goal.goal.name}</h3>
+					<strong>Priority</strong> - <span>{props.goal.goal.priority}</span>
+					{props.goal.goal.labels && (
+						<ul>
+							{props.goal.goal.labels.map((label) => {
+								return <li key={label}>{label}</li>;
+							})}
+						</ul>
+					)}
+				</div>
+			)}
+		</div>
+	);
 }
 
 const mapStateToProps = (state) => ({

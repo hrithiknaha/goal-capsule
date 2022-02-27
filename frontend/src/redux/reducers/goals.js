@@ -1,4 +1,4 @@
-import { FETCH_DATA, POST_DATA } from "../actions/type";
+import { FETCH_DATA, FETCH_SINGLE_DATE, POST_DATA } from "../actions/type";
 
 const initialState = {
 	goals: [],
@@ -12,6 +12,12 @@ export default function (state = initialState, action) {
 			return {
 				...state,
 				goals: action.payload,
+				isLoading: false,
+			};
+		case FETCH_SINGLE_DATE:
+			return {
+				...state,
+				goal: action.payload,
 				isLoading: false,
 			};
 		case POST_DATA:
