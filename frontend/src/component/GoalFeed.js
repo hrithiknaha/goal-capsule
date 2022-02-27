@@ -1,11 +1,14 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { connect } from "react-redux";
-import { fetchData } from "../redux/actions/goals";
+import { Link } from "react-router-dom";
+import { fetchData, cleanup } from "../redux/actions/goals";
 
 function GoalFeed(props) {
 	useEffect(() => {
 		props.fetchData();
+
+		return () => props.cleanup();
 	}, []);
 
 	return (
@@ -18,7 +21,8 @@ function GoalFeed(props) {
 					return (
 						<div key={goal._id}>
 							<p>
-								{goal.name} - <span>{goal.priority}</span>
+								<Link to={`/${goal._id}`}>{goal.name}</Link> -{" "}
+								<span>{goal.priority}</span>
 							</p>
 							<ul>
 								{goal.labels.map((label) => {
@@ -37,4 +41,4 @@ const mapStateToProps = (state) => ({
 	goals: state.goals,
 });
 
-export default connect(mapStateToProps, { fetchData })(GoalFeed);
+export default connect(mapStateToProps, { fetchData, cleanup })(GoalFeed);

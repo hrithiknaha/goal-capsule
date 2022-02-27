@@ -1,4 +1,9 @@
-import { FETCH_DATA, FETCH_SINGLE_DATE, POST_DATA } from "../actions/type";
+import {
+	FETCH_DATA,
+	FETCH_SINGLE_DATE,
+	POST_DATA,
+	CLEANUP,
+} from "../actions/type";
 
 const initialState = {
 	goals: [],
@@ -8,6 +13,13 @@ const initialState = {
 
 export default function (state = initialState, action) {
 	switch (action.type) {
+		case CLEANUP:
+			return {
+				...state,
+				goal: {},
+				goals: [],
+				isLoading: true,
+			};
 		case FETCH_DATA:
 			return {
 				...state,

@@ -1,5 +1,9 @@
 import axios from "axios";
-import { FETCH_DATA, FETCH_SINGLE_DATE, POST_DATA } from "./type";
+import { FETCH_DATA, FETCH_SINGLE_DATE, POST_DATA, CLEANUP } from "./type";
+
+export const cleanup = () => (dispatch) => {
+	dispatch({ type: CLEANUP });
+};
 
 export const fetchData = () => (dispatch) => {
 	axios.get("/api/goals").then(({ data }) => {
