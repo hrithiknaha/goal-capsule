@@ -28,4 +28,17 @@ router.get("/:id", async (req, res) => {
 	return res.status(200).json(goal);
 });
 
+router.put("/:id", async (req, res) => {
+	const id = req.params.id;
+
+	const body = req.body;
+	console.log(body);
+
+	const updatedGoal = await Goal.findByIdAndUpdate(id, body, { new: true });
+
+	console.log(updatedGoal);
+
+	return res.status(201).json(updatedGoal);
+});
+
 module.exports = router;
